@@ -41,6 +41,8 @@ def data():
                     'Здесь представлены наиболее полные данные, с помощью которых можно проанализировать заработные платы специалистов в зависимости от различных характеристик. '
     #информация о столбцах
     stlInfo=str(salaryData.dtypes)
+    #таблица html
+    tableHtml=outputData.to_html(classes='table table-striped')
 
     #проверка диапазона
     if (fromStr>toStl | fromStl>toStl):
@@ -48,7 +50,7 @@ def data():
     else:
         return render_template("data.html", countNone=countNone, countFill=countFill, lenStr=lenStr, lenStl=lenStl,
                             descriptionData=descriptionData, stlInfo=stlInfo) \
-                                + "<div align='center' class='table'>" + outputData.to_html() + "</div>"
+                            + '''<div class="container mt-4"><div class="card"><div class="card-body" style="overflow: auto">'''+ tableHtml +  '''</div></div></div>'''
 
 if __name__=="__main__":
     app.run(debug=True, threaded=True)

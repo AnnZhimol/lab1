@@ -50,7 +50,7 @@ def data():
     else:
         return render_template("data.html", countNone=countNone, countFill=countFill, lenStr=lenStr, lenStl=lenStl,
                             descriptionData=descriptionData, stlInfo=stlInfo) \
-                            + '''<div class="container mt-4"><div class="card"><div class="card-body" style="overflow: auto">'''+ tableHtml +  '''</div></div></div>'''
+                            + '''<div class="container mt-4"><div class="card"><div class="card-body" style="overflow: auto">'''+ tableHtml + '''</div></div></div>''' 
 
 if __name__=="__main__":
     app.run(debug=True, threaded=True)

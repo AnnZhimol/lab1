@@ -48,7 +48,7 @@ def data():
     else:
         return render_template("data.html", countNone=countNone, countFill=countFill, lenStr=lenStr, lenStl=lenStl,
                             descriptionData=descriptionData, stlInfo=stlInfo) \
-                                + "<div align='center' class='table table-bordered'>" + outputData.to_html() + "</div>"
+                                + "<div align='center' class='table'>" + outputData.to_html() + "</div>"
 
 if __name__=="__main__":
     app.run(debug=True, threaded=True)

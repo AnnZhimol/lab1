@@ -70,10 +70,10 @@ def new_df():
         job_title=df['job_title'].value_counts().index[random.randint(0,2)]
         salary_currency=df['salary_currency'].value_counts().index[random.randint(0,2)]
         employee_residence=df['employee_residence'].value_counts().index[random.randint(0,2)]
-        remote_ratio=df['remote_ratio'].value_counts().index[random.randint(0,1)]
+        remote_ratio=df['remote_ratio'].value_counts().index[random.randint(0,2)]
         company_location=df['company_location'].value_counts().index[random.randint(0,2)]
-        company_size=df['company_size'].value_counts().index[random.randint(0,1)]
-        work_year=df['work_year'].value_counts().index[random.randint(0,1)]
+        company_size=df['company_size'].value_counts().index[random.randint(0,2)]
+        work_year=df['work_year'].value_counts().index[random.randint(0,2)]
 
         max_salary=df['salary'].max()
         min_salary=df['salary'].min()

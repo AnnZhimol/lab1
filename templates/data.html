@@ -1,53 +1,173 @@
 <html>
-    <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-        <style>
-            .container {
-                margin-left: 10%;
-                margin-right: 10%;
-                margin-bottom: 1%;
-                margin-top: 1%;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container mt-4">
-            <div class="card">
-                <div class="card-body">
-                    <h1 class="text-center">Набор данных с заработной платой в области Data Science</h1>
-                    <ol class="list-group list-group-numbered">
-                        <li class="list-group-item"><b>Пустые ячейки:</b> {{countNone}}</li>
-                        <li class="list-group-item"><b>Заполненные ячейки:</b> {{countFill}}</li>
-                        <li class="list-group-item"><b>Количество строк:</b> {{lenStr}}</li>
-                        <li class="list-group-item"><b>Количество столбцов:</b> {{lenStl}}</li>
-                    </ol>
-                    <br>
-                    <p>{{descriptionData}}</p>
-                    <br>
-                    <h3>Описание столбцов таблицы:</h3>
-                    <ol class="list-group list-group-numbered">
-                      <li class="list-group-item">work_year - Год выплаты зарплаты.</li>
-                      <li class="list-group-item">experience_level - Уровень опыта работы на должности в течение года со следующими возможными значениями: EN Начальный уровень / Младший MI Средний уровень / Средний SE Старший уровень / Эксперт EX Исполнительный уровень / Директор</li>
-                      <li class="list-group-item">employment_type - Тип занятости для должности: PT Частичная занятость FT Полная занятость CT Контракт FL Фриланс</li>
-                      <li class="list-group-item">job_title - Роль работала в течение года.</li>
-                      <li class="list-group-item">salary - Общая сумма выплаченной заработной платы.</li>
-                      <li class="list-group-item">salary_currency - Валюта выплачиваемой зарплаты имеет код валюты ISO 4217.</li>
-                      <li class="list-group-item">salary_in_usd - Зарплата в долларах США (курс обмена валют, разделенный на средний курс доллара США за соответствующий год, см. fxdata.foorilla.com).</li>
-                      <li class="list-group-item">employee_residence - Основная страна проживания сотрудника в течение рабочего года в виде кода страны ISO 3166.</li>
-                      <li class="list-group-item">remote_ratio - Общий объем работы, выполняемой удаленно, возможные значения: 0 Отсутствие удаленной работы (менее 20%) 50 Частично удаленно 100 Полностью удаленно (более 80%)</li>
-                      <li class="list-group-item">company_location - Страна головного офиса или филиала-подрядчика работодателя в виде кода страны ISO 3166.</li>
-                      <li class="list-group-item">company_size - Среднее количество людей, работавших в компании в течение года: S менее 50 сотрудников (маленькие) M от 50 до 250 сотрудников (средние) L более 250 сотрудников (крупные)</li>
-                    </ol>
-                    <br>
-                    <h3>Типы данных столбцов таблицы:</h3>
-                    <p>{{stlInfo}}</p>
-                </div>
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .container {
+        margin-left: 1%;
+        margin-right: 1%;
+        margin-bottom: 1%;
+        margin-top: 1%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form action="/data" method="GET">
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title">Группировать по...</h5>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="work_year_radio"
+                value="work_year"
+              />
+              <label class="form-check-label" for="work_year_radio">
+                Году работы
+              </label>
             </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="experience_level_radio"
+                value="experience_level"
+                checked
+              />
+              <label class="form-check-label" for="experience_level_radio">
+                Опыту работы
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="employment_type_radio"
+                value="employment_type"
+              />
+              <label class="form-check-label" for="employment_type_radio">
+                Виду занятости
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="job_title_radio"
+                value="job_title"
+              />
+              <label class="form-check-label" for="job_title_radio">
+                Должности
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="employee_residence_radio"
+                value="employee_residence"
+              />
+              <label class="form-check-label" for="employee_residence_radio">
+                Местоположению работника
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="remote_ratio_radio"
+                value="remote_ratio"
+              />
+              <label class="form-check-label" for="remote_ratio_radio">
+                Объему работы на удаленке
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="company_location_radio"
+                value="company_location"
+              />
+              <label class="form-check-label" for="company_location_radio">
+                Местоположению компании
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="company_size_radio"
+                value="company_size"
+              />
+              <label class="form-check-label" for="company_size_radio">
+                Размеру компании
+              </label>
+            </div>
+          </div>
         </div>
-        <div class="container">
-          <form action="/" method="GET">
-              <button type="submit" class="btn btn-primary">Задать новый диапазон</button>
-          </form>
-      </div>
-    </body>
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title">Найти...</h5>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault2"
+                id="max_radio"
+                value="max"
+                checked
+              />
+              <label class="form-check-label" for="max_radio">
+                Максимумы
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault2"
+                id="min_radio"
+                value="min"
+                
+              />
+              <label class="form-check-label" for="min_radio"> Минимумы </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault2"
+                id="mean_radio"
+                value="mean"
+              />
+              <label class="form-check-label" for="mean_radio">
+                Средние значения
+              </label>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Показать график</button>
+      </form>
+    </div>
+  </body>
 </html>

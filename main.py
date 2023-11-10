@@ -52,7 +52,7 @@ def graphic(category,val):
         height = p.get_height()
         ax.annotate('{}'.format(height),
         xy=(p.get_x() + p.get_width() / 2, height),
-        xytext=(0, 3), # 3 points vertical offset
+        xytext=(0, 3), 
         textcoords="offset points",
         ha='center', va='bottom')
     
@@ -61,7 +61,7 @@ def graphic(category,val):
         height = p.get_height()
         ax.annotate('{}'.format(height),
         xy=(p.get_x() + p.get_width() / 2, height),
-        xytext=(0, 3), # 3 points vertical offset
+        xytext=(0, 3), 
         textcoords="offset points",
         ha='center', va='bottom')
 

@@ -19,15 +19,12 @@ class BloomFilter(object):
             hash = ((hash << 5) + hash) + ord(x)
         return hash % self.size
 
-    def _hash(self, item, K):
-        return self._hash_djb2(str(K) + item)
-
     def add_to_filter(self, item):
         for i in range(self.number_hash_functions):
-            self.filter[self._hash(item, i)] = 1
+            self.filter[self._hash_djb2(str(i) + item)] = 1
 
     def check_is_not_in_filter(self, item):
         for i in range(self.number_hash_functions):
-            if self.filter[self._hash(item, i)] == 0:
+            if self.filter[self._hash_djb2(str(i) + item)] == 0:
                 return True
         return False

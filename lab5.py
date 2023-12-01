@@ -3,59 +3,59 @@ import matplotlib.pyplot as plt
 import pandas as pd
  
 def estimate_coef(x, y):
-    # number of observations/points
+    # количество наблюдений/точек
     n = np.size(x)
  
-    # mean of x and y vector
+    # среднее значение вектора x и y
     m_x = np.mean(x)
     m_y = np.mean(y)
  
-    # calculating cross-deviation and deviation about x
+    # вычисление перекрестного отклонения и отклонения относительно x
     SS_xy = np.sum(y*x) - n*m_y*m_x
     SS_xx = np.sum(x*x) - n*m_x*m_x
  
-    # calculating regression coefficients
+    # расчет коэффициентов регрессии
     b_1 = SS_xy / SS_xx
     b_0 = m_y - b_1*m_x
  
     return (b_0, b_1)
  
 def plot_regression_line(x, y, b):
-    # plotting the actual points as scatter plot
+    # построение фактических точек в виде точечной диаграммы
     plt.scatter(x, y, color = "m",
                marker = "o", s = 1)
  
-    # predicted response vector
+    # прогнозируемый вектор ответа
     y_pred = b[0] + b[1]*x
  
-    # plotting the regression line
+    # построение линии регрессии
     plt.plot(x, y_pred, color = "g")
  
-    # putting labels
+    # конфигурация
     plt.xlabel('Размер зарплаты')
     plt.ylabel('Размер компании')
-    plt.yticks(np.arange(min(y), max(y)+1, 1.0))
-    plt.text(0, 2.15, f"Коэффициент наклона: {b[1]}", fontsize=10)
-    plt.text(0,2.25, f"Коэффициент смещения: {b[0]}", fontsize=10)
+    plt.yticks(np.arange(min(y), max(y)+100, 100.0))
+    plt.text(0, 1050, f"Коэффициент наклона: {b[1]}", fontsize=10)
+    plt.text(0,1150, f"Коэффициент смещения: {b[0]}", fontsize=10)
  
-    # function to show plot
+    # функция для отображения графика
     plt.show()
  
 def main():
-    # observations / data
+    # наблюдения/данные
     salaryData=pd.read_csv('ds_salaries.csv',sep=',')
     n=int(len(salaryData)*0.99)
     salaryArray=salaryData['salary_in_usd'].values[:n].tolist()
-    companyArray=salaryData['company_size'].replace(['S','M','L'],[0,1,2]).values[:n].tolist()
+    companyArray=salaryData['company_size'].replace(['S','M','L'],[50,150,250]).values[:n].tolist()
     x = np.array(salaryArray)
     y = np.array(companyArray)
  
-    # estimating coefficients
+    # оценочные коэффициенты
     b = estimate_coef(x, y)
     print("Estimated coefficients:\nb_0 = {}  \
           \nb_1 = {}".format(b[0], b[1]))
  
-    # plotting regression line
+    # построение линии регрессии
     plot_regression_line(x, y, b)
  
 if __name__ == "__main__":

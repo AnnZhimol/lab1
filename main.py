@@ -4,10 +4,14 @@ import matplotlib.pyplot as plt
 # график
 def plot():
     x=np.linspace(a-0.1,d+0.1,1000)
+    
+    # трапециевидные функции принадлежности
     y=[calculate_complement(a, b, c, d, i) for i in x]
     y2=[1-calculate_complement(a, b, c, d, i) for i in x]
     plt.plot(x,y)
     plt.plot(x,y2)
+
+    # точки объектов множеств
     for point in fuzzy_set:
         y_point = calculate_complement(a, b, c, d, point)
         y_point2 = 1-calculate_complement(a, b, c, d, point)

@@ -6,11 +6,6 @@ sucrose_norm = 10
 dietary_fiber_norm = 10
 cost_max = 400
 
-max_diff_cholesterol=50
-max_diff_calories=100
-max_diff_sucrose=2
-max_diff_dietary_fiber=2
-
 products = [
     Product('Горошек зелёный вареный без соли', 120, 84, 0, 5, 6),
     Product('Бифштекс из говядины', 300, 216, 95, 0, 0),

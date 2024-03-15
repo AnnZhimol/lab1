@@ -5,15 +5,18 @@ import matplotlib.pyplot as plt
 def plot():
     x=np.linspace(a-0.1,d+0.1,1000)
     y=[calculate_complement(a, b, c, d, i) for i in x]
+    y2=[1-calculate_complement(a, b, c, d, i) for i in x]
     plt.plot(x,y)
-
+    plt.plot(x,y2)
     for point in fuzzy_set:
         y_point = calculate_complement(a, b, c, d, point)
-        plt.plot(point, y_point, 'ro', label=f'Point ({point}, {y_point:.2f})')
+        y_point2 = 1-calculate_complement(a, b, c, d, point)
+        plt.plot(point, y_point, 'go', label=f'Point ({point}, {y_point:.2f})')
+        plt.plot(point, y_point2, 'ro', label=f'Point ({point}, {y_point2:.2f})')
 
     plt.title("Trapezoidal fuzzy set")
     plt.xlabel("X")
-    plt.ylabel("Membership")
+    plt.ylabel("Сomplement")
     plt.show()
 
 #функция пренадлежности (трапециевидная)

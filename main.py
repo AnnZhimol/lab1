@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+# график
 def plot():
     x=np.linspace(a-0.1,d+0.1,1000)
     y=[calculate_complement(a, b, c, d, i) for i in x]
@@ -15,6 +16,7 @@ def plot():
     plt.ylabel("Membership")
     plt.show()
 
+#функция пренадлежности (трапециевидная)
 def calculate_complement(a, b, c, d, x):
     if x <= a or x >= d:
         return 0
@@ -25,20 +27,26 @@ def calculate_complement(a, b, c, d, x):
     elif c <= x < d:
         return (d - x) / (d - c)
 
+# параметры функции принадлежности
 a = float(input("Введите значение a для функции принадлежности: "))
 b = float(input("Введите значение b для функции принадлежности: "))
 c = float(input("Введите значение c для функции принадлежности: "))
 d = float(input("Введите значение d для функции принадлежности:"))
 
+#нечеткое множество
 fuzzy_set = []
 
+# кол-во элементов в нечетком множестве
 n = int(input("Введите количество элементов в нечетком множестве: "))
 
+# добавление значений в множество
 for i in range(n):
     x = float(input(f"Введите {i+1}-й элемент множества: "))
     fuzzy_set.append(x)
 
+# вычисление функции принадлежности для значений множества
 complement = [calculate_complement(a, b, c, d, x) for x in fuzzy_set]
 
+# вывод дополнения нечеткого множества и графика
 print("Дополнение нечеткого множества:", [1 - x for x in complement])
 plot()

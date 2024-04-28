@@ -50,6 +50,6 @@ for bigram in bigrams:
 # сортировка биграм по значению Log-Likelihood
 sorted_res = sorted(res.items(), key=lambda x: x[1], reverse=True)
 
-print('10 наиболее статистически значимых биграм: ')
+print('Топ-10 наиболее статистически значимых биграмм: ')
 for item in sorted_res[:10]:
     print(item)
